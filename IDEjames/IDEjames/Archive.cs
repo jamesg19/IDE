@@ -11,6 +11,7 @@ namespace IDEjames
     class Archive
     {
         String Archivo;
+        
         public Archive(String archivo)
         {
             this.Archivo = archivo;

@@ -18,3 +18,13 @@ C:\Users\james\Desktop\IDEjames\IDEjames\obj\Debug\IDEjames.csproj.GenerateResou
 C:\Users\james\Desktop\IDEjames\IDEjames\obj\Debug\IDEjames.csproj.CoreCompileInputs.cache
 C:\Users\james\Desktop\IDEjames\IDEjames\obj\Debug\IDEjames.exe
 C:\Users\james\Desktop\IDEjames\IDEjames\obj\Debug\IDEjames.pdb
+C:\Users\james\Source\Repos\IDE\IDEjames\IDEjames\bin\Debug\IDEjames.exe.config
+C:\Users\james\Source\Repos\IDE\IDEjames\IDEjames\bin\Debug\IDEjames.exe
+C:\Users\james\Source\Repos\IDE\IDEjames\IDEjames\bin\Debug\IDEjames.pdb
+C:\Users\james\Source\Repos\IDE\IDEjames\IDEjames\obj\Debug\IDEjames.csprojAssemblyReference.cache
+C:\Users\james\Source\Repos\IDE\IDEjames\IDEjames\obj\Debug\IDEjames.Form1.resources
+C:\Users\james\Source\Repos\IDE\IDEjames\IDEjames\obj\Debug\IDEjames.Properties.Resources.resources
+C:\Users\james\Source\Repos\IDE\IDEjames\IDEjames\obj\Debug\IDEjames.csproj.GenerateResource.cache
+C:\Users\james\Source\Repos\IDE\IDEjames\IDEjames\obj\Debug\IDEjames.csproj.CoreCompileInputs.cache
+C:\Users\james\Source\Repos\IDE\IDEjames\IDEjames\obj\Debug\IDEjames.exe
+C:\Users\james\Source\Repos\IDE\IDEjames\IDEjames\obj\Debug\IDEjames.pdb

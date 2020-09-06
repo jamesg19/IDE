@@ -8,6 +8,7 @@ namespace IDEjames
     public partial class Form1 : Form
     {
         string archivo;
+        String variableprueba;
         Archive archivoObjeto = new Archive("");
 
         public Form1()
