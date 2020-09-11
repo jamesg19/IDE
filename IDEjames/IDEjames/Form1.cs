@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace IDEjames
@@ -9,17 +12,15 @@ namespace IDEjames
     {
         string archivo;
         String variableprueba;
-        Archive archivoObjeto = new Archive("");
+        Archivo archivoObjeto = new Archivo("");
 
         public Form1()
         {
             InitializeComponent();
 
-            
+            pintar();
         }
-       
-           
-        
+
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             //move location of numberLabel for amount 
@@ -33,31 +34,30 @@ namespace IDEjames
 
 
         //boton para abrir un nuevo archivo
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        { 
+        private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             // llama al metodo abrir de la clase archivo 
-            archivoObjeto.OpenArchive(TextBox);
+            archivoObjeto.AbrirArchivo(TextBox);
         }
 
         //boton para guardar un archivo
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void GuardarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // llama al metodo guardar de la clase archivo 
-            archivoObjeto.SaveArchive(TextBox);
+            archivoObjeto.GuardaArchivo(TextBox);
         }
-
-        private void newFileToolStripMenuItem_Click(object sender, EventArgs e)
+        //metodo para crear nuevo archivo
+        private void NuevoArchivoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // llama al metodo NewFIle de la clase archivo 
-            archivoObjeto.NewFile(TextBox);
-
-
-
+            // llama al metodo Nuevo Archivo de la clase archivo 
+            // y crea un nuevo archivo
+            archivoObjeto.NuevoArchivo(TextBox);
         }
 
 
 
-        //metodo 
+
+        //metodo para actualizar el numero de linea
         private void updateNumberLabel()
         {
             //we get index of first visible char and 
@@ -86,16 +86,6 @@ namespace IDEjames
 
         }
 
-        private void numberLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void TextBox_VScrollChanged(object sender, EventArgs e)
         {
             //move location of numberLabel for amount 
@@ -107,22 +97,67 @@ namespace IDEjames
             updateNumberLabel();
         }
 
-        //Salie
+        //Salir
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             //Environment.Exit(0);
             this.Dispose();
         }
 
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+
+        string[] Reservadas = new string[] { "entero", "decimal","cadena","booleano","caracter"};
+        public void pintar()
         {
-            //TextBox_VScrollChanged(sender, e);
+            //this.TextBox.TextChanged += (ob, ev) =>
+            //{
+
+            //    var palabras = this.TextBox.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            //    var resultado = from b in Reservadas
+            //                    from c in palabras
+            //                    where c == b
+            //                    select b;
+
+            //    String palabra = TextBox.Text;
+
+            //        int inicio = 0;
+            //        foreach (var item in resultado)
+            //        {
+
+
+
+            //            try
+            //            {
+
+
+            //                inicio = this.TextBox.Text.IndexOf(item, inicio);
+            //                this.TextBox.Select(inicio, item.Length);
+            //                this.TextBox.SelectionColor = Color.Red;
+            //                this.TextBox.SelectionStart = this.TextBox.Text.Length;
+            //                inicio++;
+            //            }
+            //            catch (Exception ex)
+            //            {
+
+            //            }
+
+            //        }
+                
+
+
+            //    this.TextBox.SelectionColor = Color.Black;
+            //    this.TextBox.SelectionStart = this.TextBox.Text.Length;
+
+            //};
         }
 
-        private void archiveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
+
+
+
+
+
+
+
     }
 
 }
