@@ -114,6 +114,7 @@
             this.TextBox.Text = "";
             this.TextBox.VScroll += new System.EventHandler(this.TextBox_VScrollChanged);
             this.TextBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.TextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseMove);
             // 
             // numberLabel
             // 

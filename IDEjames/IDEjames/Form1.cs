@@ -4,21 +4,25 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using System.Windows.Forms; 
+
 
 namespace IDEjames
 {
     public partial class Form1 : Form
     {
+        [System.Runtime.InteropServices.DllImport("user32.dll")] static extern Int32 LockWindowUpdate();
+
         string archivo;
         String variableprueba;
         Archivo archivoObjeto = new Archivo("");
-
+        //Private Declare Function LockWindowUpdate Lib "user32" (ByVal hWnd As Integer) As Integer
         public Form1()
         {
             InitializeComponent();
 
-            pintar();
+            //pintar();
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -29,7 +33,8 @@ namespace IDEjames
             numberLabel.Location = new Point(0, d);
 
             updateNumberLabel();
-            
+            hhh();
+            //pintar();
         }
 
 
@@ -94,7 +99,7 @@ namespace IDEjames
                                       (TextBox.Font.Height + 1);
             numberLabel.Location = new Point(0, d);
 
-            updateNumberLabel();
+            //updateNumberLabel(0);
         }
 
         //Salir
@@ -104,53 +109,55 @@ namespace IDEjames
             this.Dispose();
         }
 
+        //metodo para pintar
+        public void hhh() {
 
-        string[] Reservadas = new string[] { "entero", "decimal","cadena","booleano","caracter"};
-        public void pintar()
-        {
-            //this.TextBox.TextChanged += (ob, ev) =>
-            //{
-
-            //    var palabras = this.TextBox.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            //    var resultado = from b in Reservadas
-            //                    from c in palabras
-            //                    where c == b
-            //                    select b;
-
-            //    String palabra = TextBox.Text;
-
-            //        int inicio = 0;
-            //        foreach (var item in resultado)
-            //        {
+            string[] Reservadas = new string[] { "entero", "decimal", "cadena", "booleano", "caracter" };
+            try
+            {
 
 
+                //PONE TODO EL TEXTO EN EL COLOR POR DEFECTO(FORECOLOR)
+                TextBox.SelectionStart = 0;
+                TextBox.SelectionLength = TextBox.TextLength;
+                TextBox.SelectionColor = TextBox.ForeColor;
 
-            //            try
-            //            {
+            foreach(string CLAVE in Reservadas) 
+                { //COMPRUEBA CADA UNA DE LAS PALABRAS CLAVE
+
+                    int INDEX = 0; //'INICIA LA BUSQUEDA DE LA CLAVE DESDE LA POSICION 0 DEL TEXTO
+
+                while(INDEX <= TextBox.Text.LastIndexOf(CLAVE))
+                        {
+                        //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
+
+                        TextBox.Find(CLAVE, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
+                        TextBox.SelectionColor = Color.Purple; //'... LE PONE EL COLOR INDICADO
+                        INDEX = TextBox.Text.IndexOf(CLAVE, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
+
+                    }
+            }
+
+                //CUANDO HA TERMINADO DE BUSCAR TODAS LAS PALABRAS VUELVE A LA SITUACION NORMAL (AL FINAL DEL TEXTO)
+                TextBox.SelectionStart = TextBox.TextLength;
+                TextBox.SelectionColor = TextBox.ForeColor;
 
 
-            //                inicio = this.TextBox.Text.IndexOf(item, inicio);
-            //                this.TextBox.Select(inicio, item.Length);
-            //                this.TextBox.SelectionColor = Color.Red;
-            //                this.TextBox.SelectionStart = this.TextBox.Text.Length;
-            //                inicio++;
-            //            }
-            //            catch (Exception ex)
-            //            {
+                //DESBLOQUEA EL REPINTADO DEL TEXTO Y PERMITE VER LOS COLORES APLICADOS
 
-            //            }
+            } 
+                catch(Exception ex)
+                {
+        
+                    }
 
-            //        }
-                
-
-
-            //    this.TextBox.SelectionColor = Color.Black;
-            //    this.TextBox.SelectionStart = this.TextBox.Text.Length;
-
-            //};
         }
 
 
+        private void TextBox_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
 
 
 
@@ -161,3 +168,54 @@ namespace IDEjames
     }
 
 }
+////AQUIIIIIIIIIIIIIII
+
+
+//string[] Primitivo = new string[]
+//{ "entero", "decimal", "cadena", "booleano", "caracter" };
+//public void pintar()
+//{
+
+
+
+//    this.TextBox.TextChanged += (ob, ev) =>
+//    {
+//        //, StringSplitOptions.RemoveEmptyEntries
+//        var palabras = this.TextBox.Text.Split(new char[] { ' ' });
+//        var resultado = from PalabraReservada in Primitivo
+//                        from PalabraIngresada in palabras
+//                        where PalabraIngresada == PalabraReservada
+//                        select PalabraReservada;
+
+//        String palabra = TextBox.Text;
+
+//        int inicio = 0;
+//        foreach (var item in resultado)
+//        {
+
+
+
+//            try
+//            {
+
+
+//                inicio = this.TextBox.Text.IndexOf(item, inicio);
+//                this.TextBox.Select(inicio, item.Length);
+//                this.TextBox.SelectionColor = Color.Red;
+//                this.TextBox.SelectionStart = this.TextBox.Text.Length;
+//                inicio++;
+//            }
+//            catch (Exception ex)
+//            {
+
+//            }
+
+//        }
+
+
+
+//        this.TextBox.SelectionColor = Color.Black;
+//        this.TextBox.SelectionStart = this.TextBox.Text.Length;
+
+//    };
+//}
