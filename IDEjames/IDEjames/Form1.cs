@@ -12,8 +12,7 @@ namespace IDEjames
 {
     public partial class Form1 : Form
     {
-        [System.Runtime.InteropServices.DllImport("user32.dll")] static extern Int32 LockWindowUpdate();
-
+       
         string archivo;
         String variableprueba;
         Archivo archivoObjeto = new Archivo("");
