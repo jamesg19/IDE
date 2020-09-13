@@ -59,7 +59,37 @@ namespace IDEjames
             archivoObjeto.NuevoArchivo(TextBox);
         }
 
+        private void guardarToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            archivoObjeto.GuardarComo(TextBox);
+        }
+        //metodo para eliminar el archivo 
+        private void eliminarArchivoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            archivoObjeto.elimilarArchivo(TextBox);
+        }
 
+        //Salir
+        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Seguro que quieres Salir \n",
+                    "Salir: ", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                //Environment.Exit(0);
+                this.Dispose();
+            }
+            else if (result == DialogResult.No)
+            {
+                return;
+            }
+
+
+
+            
+        }
 
 
         //metodo para actualizar el numero de linea
@@ -90,7 +120,7 @@ namespace IDEjames
             }
 
         }
-
+        // metodo para sincronizar el richtextBox con el label de numero de linea
         private void TextBox_VScrollChanged(object sender, EventArgs e)
         {
             //move location of numberLabel for amount 
@@ -102,27 +132,25 @@ namespace IDEjames
             //updateNumberLabel(0);
         }
 
-        //Salir
-        private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            //Environment.Exit(0);
-            this.Dispose();
-        }
+
 
         //metodo para pintar
         public void hhh() {
-
+            //guarda la posicion del cursor antes de pintar
+            int pos = TextBox.SelectionStart;
             string[] Reservadas = new string[] { "entero", "decimal", "cadena", "booleano", "caracter" };
             try
             {
 
 
                 //PONE TODO EL TEXTO EN EL COLOR POR DEFECTO(FORECOLOR)
+                
                 TextBox.SelectionStart = 0;
                 TextBox.SelectionLength = TextBox.TextLength;
                 TextBox.SelectionColor = TextBox.ForeColor;
+                
 
-            foreach(string CLAVE in Reservadas) 
+                foreach (string CLAVE in Reservadas) 
                 { //COMPRUEBA CADA UNA DE LAS PALABRAS CLAVE
 
                     int INDEX = 0; //'INICIA LA BUSQUEDA DE LA CLAVE DESDE LA POSICION 0 DEL TEXTO
@@ -130,20 +158,26 @@ namespace IDEjames
                 while(INDEX <= TextBox.Text.LastIndexOf(CLAVE))
                         {
                         //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
-
+                        
                         TextBox.Find(CLAVE, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
                         TextBox.SelectionColor = Color.Purple; //'... LE PONE EL COLOR INDICADO
                         INDEX = TextBox.Text.IndexOf(CLAVE, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
 
                     }
-            }
+                    
+
+                }
 
                 //CUANDO HA TERMINADO DE BUSCAR TODAS LAS PALABRAS VUELVE A LA SITUACION NORMAL (AL FINAL DEL TEXTO)
                 TextBox.SelectionStart = TextBox.TextLength;
                 TextBox.SelectionColor = TextBox.ForeColor;
 
+                // establece el valor del cursor donde se encontraba antes de pintar la palabra con color
+                TextBox.SelectionStart = pos;
+                TextBox.SelectionLength = 0;
 
-                //DESBLOQUEA EL REPINTADO DEL TEXTO Y PERMITE VER LOS COLORES APLICADOS
+
+               
 
             } 
                 catch(Exception ex)
@@ -154,15 +188,29 @@ namespace IDEjames
         }
 
 
-        private void TextBox_MouseMove(object sender, MouseEventArgs e)
-        {
 
+
+        //muestra la pocion del cursos en cuarquier momento
+        private void muestraPosicion(object sender, MouseEventArgs e)
+        {
+            //TextBox.selection star es el metodo para obtener la posicion del cursor y le sumo
+            //+1 por los index que empiezan en 0
+            int Line = TextBox.SelectionStart;
+            int valor =1;
+            int Numerolinea = (Line+valor);
+            //obtengo en numero de fila
+            position.Text = TextBox.GetLineFromCharIndex(Numerolinea)+"";
+            
         }
 
 
 
 
+        private void james(object sender, EventArgs e)
+        {
+            MessageBox.Show("Moviendo");
 
+        }
 
 
     }
