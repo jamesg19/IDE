@@ -42,11 +42,11 @@
             this.numberLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.LogError = new System.Windows.Forms.RichTextBox();
             this.Posicion = new System.Windows.Forms.Label();
             this.position = new System.Windows.Forms.Label();
             this.Colum = new System.Windows.Forms.Label();
             this.columna = new System.Windows.Forms.Label();
+            this.LogError = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -125,17 +125,16 @@
             // TextBox
             // 
             this.TextBox.AcceptsTab = true;
-            this.TextBox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.TextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TextBox.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBox.Location = new System.Drawing.Point(65, 50);
+            this.TextBox.Location = new System.Drawing.Point(65, 27);
             this.TextBox.Name = "TextBox";
             this.TextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.TextBox.Size = new System.Drawing.Size(867, 299);
+            this.TextBox.Size = new System.Drawing.Size(867, 342);
             this.TextBox.TabIndex = 0;
             this.TextBox.Text = "";
             this.TextBox.VScroll += new System.EventHandler(this.TextBox_VScrollChanged);
-            this.TextBox.CursorChanged += new System.EventHandler(this.james);
             this.TextBox.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             this.TextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.muestraPosicion);
             // 
@@ -147,31 +146,21 @@
             this.numberLabel.Name = "numberLabel";
             this.numberLabel.Size = new System.Drawing.Size(17, 19);
             this.numberLabel.TabIndex = 1;
-            this.numberLabel.Text = "0";
+            this.numberLabel.Text = "1";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.numberLabel);
-            this.panel1.Location = new System.Drawing.Point(11, 50);
+            this.panel1.Location = new System.Drawing.Point(13, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(46, 304);
+            this.panel1.Size = new System.Drawing.Size(46, 339);
             this.panel1.TabIndex = 2;
-            // 
-            // LogError
-            // 
-            this.LogError.AcceptsTab = true;
-            this.LogError.Location = new System.Drawing.Point(70, 384);
-            this.LogError.Name = "LogError";
-            this.LogError.ReadOnly = true;
-            this.LogError.Size = new System.Drawing.Size(847, 177);
-            this.LogError.TabIndex = 3;
-            this.LogError.Text = "";
             // 
             // Posicion
             // 
             this.Posicion.AutoSize = true;
-            this.Posicion.Location = new System.Drawing.Point(68, 359);
+            this.Posicion.Location = new System.Drawing.Point(67, 381);
             this.Posicion.Name = "Posicion";
             this.Posicion.Size = new System.Drawing.Size(32, 13);
             this.Posicion.TabIndex = 4;
@@ -180,7 +169,7 @@
             // position
             // 
             this.position.AutoSize = true;
-            this.position.Location = new System.Drawing.Point(116, 359);
+            this.position.Location = new System.Drawing.Point(115, 381);
             this.position.Name = "position";
             this.position.Size = new System.Drawing.Size(25, 13);
             this.position.TabIndex = 5;
@@ -189,7 +178,7 @@
             // Colum
             // 
             this.Colum.AutoSize = true;
-            this.Colum.Location = new System.Drawing.Point(161, 359);
+            this.Colum.Location = new System.Drawing.Point(160, 381);
             this.Colum.Name = "Colum";
             this.Colum.Size = new System.Drawing.Size(51, 13);
             this.Colum.TabIndex = 6;
@@ -198,11 +187,22 @@
             // columna
             // 
             this.columna.AutoSize = true;
-            this.columna.Location = new System.Drawing.Point(228, 359);
+            this.columna.Location = new System.Drawing.Point(227, 381);
             this.columna.Name = "columna";
             this.columna.Size = new System.Drawing.Size(25, 13);
             this.columna.TabIndex = 7;
             this.columna.Text = "___";
+            // 
+            // LogError
+            // 
+            this.LogError.AcceptsTab = true;
+            this.LogError.Location = new System.Drawing.Point(70, 430);
+            this.LogError.Name = "LogError";
+            this.LogError.ReadOnly = true;
+            this.LogError.Size = new System.Drawing.Size(867, 157);
+            this.LogError.TabIndex = 3;
+            this.LogError.Text = "";
+            this.LogError.TextChanged += new System.EventHandler(this.LogError_TextChanged);
             // 
             // Form1
             // 
@@ -244,13 +244,13 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.ToolStripMenuItem SalirMenuItem1;
         public System.Windows.Forms.RichTextBox TextBox;
-        private System.Windows.Forms.RichTextBox LogError;
         private System.Windows.Forms.Label Posicion;
         private System.Windows.Forms.Label position;
         private System.Windows.Forms.Label Colum;
         private System.Windows.Forms.Label columna;
         private System.Windows.Forms.ToolStripMenuItem GuardarcomoMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarArchivoToolStripMenuItem;
+        private System.Windows.Forms.RichTextBox LogError;
     }
 }
 

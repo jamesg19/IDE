@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IDEjames.Analizador;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -12,15 +14,19 @@ namespace IDEjames
 {
     public partial class Form1 : Form
     {
-       
+        ArrayList lista = new ArrayList();
+        String[] Array = new String[] { };
+        DatosPrimitivo DT;
         string archivo;
         String variableprueba;
         Archivo archivoObjeto = new Archivo("");
+        
         //Private Declare Function LockWindowUpdate Lib "user32" (ByVal hWnd As Integer) As Integer
         public Form1()
         {
             InitializeComponent();
-
+            DatosPrimitivo DT = new DatosPrimitivo("",TextBox);
+            this.DT = DT;
             //pintar();
         }
 
@@ -32,8 +38,10 @@ namespace IDEjames
             numberLabel.Location = new Point(0, d);
 
             updateNumberLabel();
-            hhh();
+            //hhh();
             //pintar();
+            //pruebaCadena();
+            PPPPPPP();
         }
 
 
@@ -85,51 +93,65 @@ namespace IDEjames
                 return;
             }
 
-
-
             
         }
-
 
         //metodo para actualizar el numero de linea
         private void updateNumberLabel()
         {
-            //we get index of first visible char and 
-            //number of first visible line
-            Point pos = new Point(0, 0);
-            int firstIndex = TextBox.GetCharIndexFromPosition(pos);
-            int firstLine = TextBox.GetLineFromCharIndex(firstIndex);
+            ////we get index of first visible char and 
+            ////number of first visible line
+            //Point pos = new Point(0, 0);
+            //int firstIndex = TextBox.GetCharIndexFromPosition(pos);
+            //int firstLine = TextBox.GetLineFromCharIndex(firstIndex);
 
-            //now we get index of last visible char 
-            //and number of last visible line
-            pos.X = ClientRectangle.Width;
-            pos.Y = ClientRectangle.Height;
-            int lastIndex = TextBox.GetCharIndexFromPosition(pos);
-            int lastLine = TextBox.GetLineFromCharIndex(lastIndex);
+            ////now we get index of last visible char 
+            ////and number of last visible line
+            //pos.X = ClientRectangle.Width;
+            //pos.Y = ClientRectangle.Height;
+            //int lastIndex = TextBox.GetCharIndexFromPosition(pos);
+            //int lastLine = TextBox.GetLineFromCharIndex(lastIndex);
 
-            //this is point position of last visible char, we'll 
-            //use its Y value for calculating numberLabel size
-            pos = TextBox.GetPositionFromCharIndex(lastIndex);
+            ////this is point position of last visible char, we'll 
+            ////use its Y value for calculating numberLabel size
+            //pos = TextBox.GetPositionFromCharIndex(lastIndex);
 
-            //finally, renumber label
-            numberLabel.Text = "";
-            for (int i = firstLine; i <= lastLine + 1; i++)
-            {
-                numberLabel.Text += i + 1 + "\n";
-            }
-
+            ////finally, renumber label
+            //numberLabel.Text = "";
+            //for (int i = firstLine; i <= lastLine + 1; i++)
+            //{
+            //    numberLabel.Text += i + 1 + "\n";
+            //}
+            
         }
         // metodo para sincronizar el richtextBox con el label de numero de linea
         private void TextBox_VScrollChanged(object sender, EventArgs e)
         {
-            //move location of numberLabel for amount 
-            //of pixels caused by scrollbar
-            int d = TextBox.GetPositionFromCharIndex(0).Y %
-                                      (TextBox.Font.Height + 1);
-            numberLabel.Location = new Point(0, d);
+            ////move location of numberLabel for amount 
+            ////of pixels caused by scrollbar
+            //int d = TextBox.GetPositionFromCharIndex(0).Y %
+            //                          (TextBox.Font.Height + 1);
+            //numberLabel.Location = new Point(0, d);
 
-            //updateNumberLabel(0);
+            ////updateNumberLabel();
         }
+
+        //muestra la pocion del cursos en cuarquier momento
+        private void muestraPosicion(object sender, MouseEventArgs e)
+        {
+
+            // Get the line. 
+            int index = TextBox.SelectionStart;
+            int line = TextBox.GetLineFromCharIndex(index);
+            position.Text = (line + 1) + "";
+            // Get the column. 
+            int firstChar = TextBox.GetFirstCharIndexFromLine(line);
+            int column = index - firstChar;
+            columna.Text = column + "";
+
+        }
+
+
 
 
 
@@ -141,13 +163,13 @@ namespace IDEjames
             try
             {
 
-
                 //PONE TODO EL TEXTO EN EL COLOR POR DEFECTO(FORECOLOR)
                 
                 TextBox.SelectionStart = 0;
                 TextBox.SelectionLength = TextBox.TextLength;
                 TextBox.SelectionColor = TextBox.ForeColor;
-                
+
+                //DT.Inicial(TextBox);
 
                 foreach (string CLAVE in Reservadas) 
                 { //COMPRUEBA CADA UNA DE LAS PALABRAS CLAVE
@@ -175,50 +197,99 @@ namespace IDEjames
                 TextBox.SelectionStart = pos;
                 TextBox.SelectionLength = 0;
 
-
-               
-
             } 
                 catch(Exception ex)
                 {
         
+                }
+
+        }
+
+
+
+
+
+        public void PPPPPPP()
+        {
+            //guarda la posicion del cursor antes de pintar
+            int pos = TextBox.SelectionStart;
+            string[] Reservadas = new string[] { ";" };
+
+
+
+            try
+            {
+                //PONE TODO EL TEXTO EN EL COLOR POR DEFECTO(FORECOLOR)
+
+                TextBox.SelectionStart = 0;
+                TextBox.SelectionLength = TextBox.TextLength;
+                TextBox.SelectionColor = TextBox.ForeColor;
+
+                foreach (string CLAVE in Reservadas)
+                { //COMPRUEBA CADA UNA DE LAS PALABRAS CLAVE
+
+                    int INDEX = 0; //'INICIA LA BUSQUEDA DE LA CLAVE DESDE LA POSICION 0 DEL TEXTO
+
+                    while (INDEX <= TextBox.Text.LastIndexOf(CLAVE))
+                    {
+                        //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
+                        
+                        TextBox.Find(CLAVE, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
+                        TextBox.SelectionColor = Color.Pink; //'... LE PONE EL COLOR INDICADO
+                        INDEX = TextBox.Text.IndexOf(CLAVE, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
+
                     }
+                }
 
+                //CUANDO HA TERMINADO DE BUSCAR TODAS LAS PALABRAS VUELVE A LA SITUACION NORMAL (AL FINAL DEL TEXTO)
+                TextBox.SelectionStart = TextBox.TextLength;
+                TextBox.SelectionColor = TextBox.ForeColor;
+
+                // establece el valor del cursor donde se encontraba antes de pintar la palabra con color
+                TextBox.SelectionStart = pos;
+                TextBox.SelectionLength = 0;
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            //agrega las linea
+            for (int i = 0; i < TextBox.Lines.Length; i++)
+            {
+
+                DT.Inicial(TextBox.Lines[i],TextBox);
+
+            }
+
+
+            //limpia los valores de la lista
+            //lista.Clear();
         }
 
 
 
 
-        //muestra la pocion del cursos en cuarquier momento
-        private void muestraPosicion(object sender, MouseEventArgs e)
+
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            //TextBox.selection star es el metodo para obtener la posicion del cursor y le sumo
-            //+1 por los index que empiezan en 0
-            int Line = TextBox.SelectionStart;
-            int valor =1;
-            int Numerolinea = (Line+valor);
-            //obtengo en numero de fila
-            position.Text = TextBox.GetLineFromCharIndex(Numerolinea)+"";
+            //DT.Inicial(TextBox);
             
+            MessageBox.Show(" linea 2: "+ TextBox.Text.ToString());
         }
 
-
-
-
-        private void james(object sender, EventArgs e)
+        private void LogError_TextChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("Moviendo");
 
         }
-
-
     }
 
 }
 ////AQUIIIIIIIIIIIIIII
 
 
-//string[] Primitivo = new string[]
+//string[] Primitivo = new string[]f
 //{ "entero", "decimal", "cadena", "booleano", "caracter" };
 //public void pintar()
 //{

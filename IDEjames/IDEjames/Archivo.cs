@@ -13,14 +13,11 @@ namespace IDEjames
         String ruta;
         String archivo;
         
-
-        
         public Archivo(String archivo)
         {
             this.archivo = archivo;
 
         }
-
 
         public void AbrirArchivo(RichTextBox TextBox)
         {
@@ -39,7 +36,6 @@ namespace IDEjames
                 {
                     //lee el archivo completo
                      TextBox.Text = sr.ReadToEnd();
-                    
 
                 }
             }
@@ -49,7 +45,6 @@ namespace IDEjames
         {
             try
             {
-
                 SaveFileDialog guardar = new SaveFileDialog();
                 guardar.Filter = ".gt|*.gt";
 
@@ -61,12 +56,10 @@ namespace IDEjames
                     {
                         sw.Write(TextBox.Text);
                         this.ruta = archivo;
-
                     }
                 }
                 else
                 {
-
                     if (guardar.ShowDialog() == DialogResult.OK)
                     {
                         this.ruta = guardar.FileName;
@@ -87,14 +80,10 @@ namespace IDEjames
         } 
         //metodo para crear un nuevo archivo
         public void NuevoArchivo(RichTextBox TextBox)
-        {
-                           
+        {           
                 TextBox.Clear();
                 archivo = null;
                 GuardaArchivo(TextBox);
-            
-            
-
         }
         //metodo para guardar como
         public void GuardarComo(RichTextBox TextBox)
@@ -120,7 +109,6 @@ namespace IDEjames
             {
                 MessageBox.Show("Error al guardar el archivo");
             }
-           
 
         }
         //metodo para eliminar un archivo abierto en el IDE
@@ -157,18 +145,3 @@ namespace IDEjames
 
     }
 }
-
-//public void eliminarProyecto(String PATH)
-//{
-//    try
-//    {
-//        if (File.Exists(path))
-//        {
-//            File.Delete(path);
-//        }
-//    }
-//    catch (Exception ex)
-//    {
-//        MessageBox.Show("No se ha podido elimar el proyecto", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-//    }
-//}
