@@ -116,7 +116,7 @@ namespace IDEjames.Analizador
                 }
                 else
                 {
-                    //MessageBox.Show("letra: " + caracteres[contador].ToString());
+                   
                     cadenaValida += caracteres[contador].ToString();
                     contador++;
                     EstadoD();
@@ -128,8 +128,8 @@ namespace IDEjames.Analizador
         {
                 
                 esCadena = true;
-                MessageBox.Show("Es Cadena: "+ cadenaValida);
-            pintaCadena(cadenaValida);
+                //MessageBox.Show("Es Cadena: "+ ComentarioValido);
+                pintaCadena(cadenaValida);
                 return;
             
         }
@@ -155,7 +155,6 @@ namespace IDEjames.Analizador
 
                     else
                     {
-                        //MessageBox.Show("letra: " + caracteres[contador].ToString());
                         cadenaValida += caracteres[contador].ToString();
                         contador++;
                         EstadoB();
@@ -170,9 +169,6 @@ namespace IDEjames.Analizador
         {
             this.cadena = cadena;
         }
-
-
-
 
         public void pintaCadena(String cadena)
         {

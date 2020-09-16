@@ -15,10 +15,10 @@ namespace IDEjames
     public partial class Form1 : Form
     {
         ArrayList lista = new ArrayList();
-        String[] Array = new String[] { };
+        String[] Array=new String[] { };
         DatosPrimitivo DT;
+        Comentario CMT;
         string archivo;
-        String variableprueba;
         Archivo archivoObjeto = new Archivo("");
         
         //Private Declare Function LockWindowUpdate Lib "user32" (ByVal hWnd As Integer) As Integer
@@ -26,7 +26,9 @@ namespace IDEjames
         {
             InitializeComponent();
             DatosPrimitivo DT = new DatosPrimitivo("",TextBox);
+            Comentario CMT = new Comentario("", TextBox);
             this.DT = DT;
+            this.CMT = CMT;
             //pintar();
         }
 
@@ -85,7 +87,7 @@ namespace IDEjames
 
             if (result == DialogResult.Yes)
             {
-                //Environment.Exit(0);
+                
                 this.Dispose();
             }
             else if (result == DialogResult.No)
@@ -211,11 +213,12 @@ namespace IDEjames
 
         public void PPPPPPP()
         {
+
             //guarda la posicion del cursor antes de pintar
             int pos = TextBox.SelectionStart;
-            string[] Reservadas = new string[] { ";" };
+            string[] Reservadas = new string[] {";","="};
 
-
+            
 
             try
             {
@@ -225,16 +228,18 @@ namespace IDEjames
                 TextBox.SelectionLength = TextBox.TextLength;
                 TextBox.SelectionColor = TextBox.ForeColor;
 
+                
+
                 foreach (string CLAVE in Reservadas)
                 { //COMPRUEBA CADA UNA DE LAS PALABRAS CLAVE
 
                     int INDEX = 0; //'INICIA LA BUSQUEDA DE LA CLAVE DESDE LA POSICION 0 DEL TEXTO
 
-                    while (INDEX <= TextBox.Text.LastIndexOf(CLAVE))
+                    while (INDEX <= TextBox.Text.LastIndexOf(CLAVE.ToString())) //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
                     {
-                        //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
-                        
-                        TextBox.Find(CLAVE, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
+                     
+
+                        TextBox.Find(CLAVE.ToString(), INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
                         TextBox.SelectionColor = Color.Pink; //'... LE PONE EL COLOR INDICADO
                         INDEX = TextBox.Text.IndexOf(CLAVE, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
 
@@ -253,87 +258,34 @@ namespace IDEjames
             catch (Exception ex)
             {
             }
-
             //agrega las linea
             for (int i = 0; i < TextBox.Lines.Length; i++)
             {
 
-                DT.Inicial(TextBox.Lines[i],TextBox);
-
+                DT.Inicial(TextBox.Lines[i], TextBox);
+                CMT.Inicial(TextBox.Lines[i], TextBox);
             }
 
-
-            //limpia los valores de la lista
-            //lista.Clear();
         }
 
 
-
-
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //DT.Inicial(TextBox);
-            
-            MessageBox.Show(" linea 2: "+ TextBox.Text.ToString());
-        }
 
         private void LogError_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            lista.Add("a");
+            lista.Add("b");
+            lista.Add("c");
+            lista.Add("d");
+
+            MessageBox.Show("Contiena la letra c?   " + lista.Contains("g" +
+                ""));
+        }
     }
 
 }
-////AQUIIIIIIIIIIIIIII
-
-
-//string[] Primitivo = new string[]f
-//{ "entero", "decimal", "cadena", "booleano", "caracter" };
-//public void pintar()
-//{
-
-
-
-//    this.TextBox.TextChanged += (ob, ev) =>
-//    {
-//        //, StringSplitOptions.RemoveEmptyEntries
-//        var palabras = this.TextBox.Text.Split(new char[] { ' ' });
-//        var resultado = from PalabraReservada in Primitivo
-//                        from PalabraIngresada in palabras
-//                        where PalabraIngresada == PalabraReservada
-//                        select PalabraReservada;
-
-//        String palabra = TextBox.Text;
-
-//        int inicio = 0;
-//        foreach (var item in resultado)
-//        {
-
-
-
-//            try
-//            {
-
-
-//                inicio = this.TextBox.Text.IndexOf(item, inicio);
-//                this.TextBox.Select(inicio, item.Length);
-//                this.TextBox.SelectionColor = Color.Red;
-//                this.TextBox.SelectionStart = this.TextBox.Text.Length;
-//                inicio++;
-//            }
-//            catch (Exception ex)
-//            {
-
-//            }
-
-//        }
-
-
-
-//        this.TextBox.SelectionColor = Color.Black;
-//        this.TextBox.SelectionStart = this.TextBox.Text.Length;
-
-//    };
-//}

@@ -47,6 +47,7 @@
             this.Colum = new System.Windows.Forms.Label();
             this.columna = new System.Windows.Forms.Label();
             this.LogError = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -131,7 +132,7 @@
             this.TextBox.Location = new System.Drawing.Point(65, 27);
             this.TextBox.Name = "TextBox";
             this.TextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.TextBox.Size = new System.Drawing.Size(867, 342);
+            this.TextBox.Size = new System.Drawing.Size(867, 343);
             this.TextBox.TabIndex = 0;
             this.TextBox.Text = "";
             this.TextBox.VScroll += new System.EventHandler(this.TextBox_VScrollChanged);
@@ -204,12 +205,23 @@
             this.LogError.Text = "";
             this.LogError.TextChanged += new System.EventHandler(this.LogError_TextChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(535, 376);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 36);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(944, 626);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.columna);
             this.Controls.Add(this.Colum);
             this.Controls.Add(this.position);
@@ -251,6 +263,7 @@
         private System.Windows.Forms.ToolStripMenuItem GuardarcomoMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarArchivoToolStripMenuItem;
         private System.Windows.Forms.RichTextBox LogError;
+        private System.Windows.Forms.Button button1;
     }
 }
 

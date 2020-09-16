@@ -49,6 +49,7 @@
     <Compile Include="Analizador\AnalizadorLexico.cs" />
     <Compile Include="Analizador\Comentario.cs" />
     <Compile Include="Analizador\DatosPrimitivo.cs" />
+    <Compile Include="Analizador\OperadorAritmetico.cs" />
     <Compile Include="Archivo.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
