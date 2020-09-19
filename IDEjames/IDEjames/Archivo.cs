@@ -23,9 +23,12 @@ namespace IDEjames
         {
             OpenFileDialog openFile = new OpenFileDialog();
             //agrego un filtro texto.txt
-            openFile.Filter = ".gt|*.gt";
             
-            
+            //openFile.Filter = ".gt|*.gt" +"|All Files|*.*";
+            openFile.Filter = ".gt|*.gt" +"|All Files|*.*";
+
+
+
             if (openFile.ShowDialog() == DialogResult.OK)
             {
                 this.ruta = openFile.FileName;

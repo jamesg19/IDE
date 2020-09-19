@@ -89,8 +89,8 @@ namespace IDEjames.Analizador
                         EstadoA();
                     }
                 }
-                catch 
-                { 
+                catch
+                {
                 }
             }
         }
@@ -155,7 +155,7 @@ namespace IDEjames.Analizador
             {
 
             }
-            
+
 
         }
         //estado de aceptacion que finaliza con una comilla
@@ -175,13 +175,14 @@ namespace IDEjames.Analizador
         {
             if (contador < cadena.Length)
             {
-try
+                try
                 {
                     if (caracteres[contador].ToString() == "/")
                     {
                         ComentarioValido += caracteres[contador].ToString();
                         contador++;
                         EstadoE();
+                        ComentarioValido = "";
                     }
                     else
                     {
@@ -215,15 +216,16 @@ try
             {
                 int INDEX = 0; //'INICIA LA BUSQUEDA DE LA CLAVE DESDE LA POSICION 0 DEL TEXTO
 
-
-                TextBox.Find(cadena, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
-                TextBox.SelectionColor = Color.Red; //'... LE PONE EL COLOR INDICADO
-                INDEX = TextBox.Text.IndexOf(cadena, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
-
+                while (INDEX <= TextBox.Text.LastIndexOf(cadena.ToString())) //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
+                {
+                    TextBox.Find(cadena, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
+                    TextBox.SelectionColor = Color.Red; //'... LE PONE EL COLOR INDICADO
+                    INDEX = TextBox.Text.IndexOf(cadena, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
+                }
                 // establece el valor del cursor donde se encontraba antes de pintar la palabra con color
                 TextBox.SelectionStart = pos;
                 TextBox.SelectionLength = 0;
-
+                
             }
             catch (Exception ex)
             { }

@@ -8,8 +8,9 @@ using System.Windows.Forms;
 
 namespace IDEjames.Analizador
 {
-    class OperadorAritmetico
+    class OperadorRelacion
     {
+
         RichTextBox TextBox;
         String TextB;
         String cadenaValida;
@@ -17,9 +18,9 @@ namespace IDEjames.Analizador
         private int contador;
         private String cadena;
         private char[] caracteres;
-        char comilla = '"';
 
-        public OperadorAritmetico(String TextB, RichTextBox TextBox)
+
+        public OperadorRelacion(String TextB, RichTextBox TextBox)
         {
             esCadena = false;
 
@@ -27,7 +28,6 @@ namespace IDEjames.Analizador
             caracteres = cadena.ToCharArray();
 
         }
-
         public void Inicial(String TextB, RichTextBox TextBox)
         {
             this.TextBox = TextBox;
@@ -36,68 +36,62 @@ namespace IDEjames.Analizador
             SetCadena(TextB.ToString());
             caracteres = cadena.ToCharArray();
             contador = 0;
-            cadenaValida = "";
+            cadenaValida = null;
             EstadoA();
         }
-
         public void EstadoA()
         {
             try
             {
-                if (contador < cadena.Length)
+                
+                if (caracteres[contador].ToString() == ">"||
+                    caracteres[contador].ToString() == "<")
                 {
-                    if (caracteres[contador].ToString() == "+")
-                    {
-                        cadenaValida += caracteres[contador].ToString();
-                        contador++;
-                        pintaAritmetico(cadenaValida);
-                        EstadoB();
-
-                    }
-                    if (caracteres[contador].ToString() == "-")
-                    {
-                        cadenaValida += caracteres[contador].ToString();
-                        contador++;
-                        pintaAritmetico(cadenaValida);
-                        EstadoC();
-
-                    }
-                    if (caracteres[contador].ToString() == "*" || caracteres[contador].ToString() == "/")
-                    {
-                        cadenaValida += caracteres[contador].ToString();
-                        contador++;
-
-                        EstadoD();
-
-                    }
-                    else
-                    {
-
-                        esCadena = false;
-                        return;
-                    }
+                    cadenaValida += caracteres[contador].ToString();
+                    contador++;
+                    
+                    EstadoB();
+                    
 
                 }
-            }
-            catch
-            {
 
+                if (caracteres[contador].ToString() == "!"||
+                    caracteres[contador].ToString() == "=")
+                {
+                    cadenaValida += caracteres[contador].ToString();
+                    contador++;
+
+                    EstadoC();
+
+                }
+                else
+                {
+                    esCadena = false;
+                    return;
+                }
             }
+            catch { }
         }
 
         public void EstadoB()
         {
-
             try
             {
                 if (contador < cadena.Length)
                 {
-                    if (caracteres[contador].ToString() == "+")
+                    if (caracteres[contador].ToString() == "=")
                     {
+                       
                         cadenaValida += caracteres[contador].ToString();
-                        
                         EstadoE();
                     }
+                    if (caracteres[contador].ToString() == " ")
+                    {
+
+                        cadenaValida += caracteres[contador].ToString();
+                        EstadoE();
+                    }
+
                     else
                     {
                         esCadena = false;
@@ -110,51 +104,43 @@ namespace IDEjames.Analizador
 
             }
         }
-        //estado de aceptacion 
+        //estado de aceptacion que finaliza con una comilla
         public void EstadoC()
         {
-            try
+            try          
             {
                 if (contador < cadena.Length)
                 {
-                    if (caracteres[contador].ToString() == "-")
+                    if (caracteres[contador].ToString() == "=")
                     {
                         cadenaValida += caracteres[contador].ToString();
                         EstadoE();
-
                     }
-
                     else
                     {
-
                         esCadena = false;
                         return;
                     }
-
                 }
             }
             catch
             {
 
             }
-
-        }
-
-        public void EstadoD()
-        {
-            esCadena = true;
-            //MessageBox.Show("Es Cadena: "+ ComentarioValido);
-            pintaAritmetico(cadenaValida);
-            cadenaValida = "";
-            return;
-        }
+            }
         public void EstadoE()
         {
-            esCadena = true;
-            //MessageBox.Show("Es Cadena: "+ ComentarioValido);
-            pintaAritmetico(cadenaValida);
-            cadenaValida = "";
-            return;
+            try
+            {
+                esCadena = true;
+                
+                PintaRelacional(cadenaValida);
+                return;
+            }
+            catch
+            {
+
+            }
         }
 
         public void SetCadena(String cadena)
@@ -162,31 +148,29 @@ namespace IDEjames.Analizador
             this.cadena = cadena;
         }
 
-
-
-
-        public void pintaAritmetico(String cadena)
+        public void PintaRelacional(String cadena)
         {
             int pos = TextBox.SelectionStart;
             try
             {
                 int INDEX = 0; //'INICIA LA BUSQUEDA DE LA CLAVE DESDE LA POSICION 0 DEL TEXTO
+
                 while (INDEX <= TextBox.Text.LastIndexOf(cadena.ToString())) //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
                 {
 
-                    TextBox.Find(cadena, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
+                    TextBox.Find(cadena.ToString(), INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
                     TextBox.SelectionColor = Color.Blue; //'... LE PONE EL COLOR INDICADO
                     INDEX = TextBox.Text.IndexOf(cadena, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
+
                 }
+
                 // establece el valor del cursor donde se encontraba antes de pintar la palabra con color
                 TextBox.SelectionStart = pos;
                 TextBox.SelectionLength = 0;
-
             }
             catch (Exception ex)
             { }
         }
-
 
     }
 }

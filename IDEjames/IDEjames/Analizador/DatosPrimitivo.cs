@@ -18,7 +18,7 @@ namespace IDEjames.Analizador
         private String cadena;
         private char[] caracteres;
         char comilla = '"';
-       
+        
         public DatosPrimitivo(String TextB,RichTextBox TextBox)
         {
             esCadena = false;
@@ -27,23 +27,24 @@ namespace IDEjames.Analizador
             caracteres = cadena.ToCharArray();
 
         }
-
         public void Inicial(String TextB, RichTextBox TextBox)
         {
             this.TextBox = TextBox;
             this.TextB = TextB;
+            SetCadena("");
             SetCadena(TextB.ToString());
             caracteres = cadena.ToCharArray();
             contador = 0;
             cadenaValida = "";
             EstadoA();
         }
-        
         public void EstadoA()
         {
+            try { 
+
             if (contador < cadena.Length)
             {
-                try { 
+                
                 if (caracteres[contador].ToString()=="c")
                 {
                     contador++;
@@ -62,8 +63,28 @@ namespace IDEjames.Analizador
                                     if (caracteres[contador].ToString() == "a")
                                     {
                                         contador++;
+                                            if (caracteres[contador].ToString() == " ")
+                                            {
+                                                contador++;
+                                                if (caracteres[contador].ToString() == "=")
+                                                {
+                                                    contador++;
+                                                    if (caracteres[contador].ToString() == " " )
+                                                    {
+                                                        contador++;
+                                                        pimitivo();
 
-                                    }else { error(); }
+                                                    }
+                                                    else { error(); }
+
+                                                }
+                                                else { error(); }
+
+                                            }
+                                            else { error(); }
+
+                                        }
+                                        else { error(); }
 
                                 }else { error(); }
 
@@ -71,32 +92,36 @@ namespace IDEjames.Analizador
                         }else { error(); }
                     }else { error(); }
                 }else { error(); }
-                
-
+                    pimitivo();
+            }
+            }
+                catch { }
+        }
+        public void pimitivo()
+        {
+            try
+            {
                 //MessageBox.Show("letra: " + caracteres[contador].ToString());
-                if (caracteres[contador].ToString()==comilla.ToString())
+                if (caracteres[contador].ToString() == comilla.ToString())
                 {
                     cadenaValida += caracteres[contador].ToString();
                     contador++;
-                    
+
                     EstadoB();
 
                 }
-
-
                 else
                 {
                     contador++;
                     EstadoA();
-                    //esCadena = false;
-                    //return;
+
                 }
-                }
-                catch { }
             }
+            catch
+            {
 
+            }
         }
-
 
         public void EstadoB()
         {
@@ -177,11 +202,12 @@ namespace IDEjames.Analizador
             {
                     int INDEX = 0; //'INICIA LA BUSQUEDA DE LA CLAVE DESDE LA POSICION 0 DEL TEXTO
 
-
-                        TextBox.Find(cadena, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
-                        TextBox.SelectionColor = Color.Gray; //'... LE PONE EL COLOR INDICADO
-                        INDEX = TextBox.Text.IndexOf(cadena, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
-
+                while (INDEX <= TextBox.Text.LastIndexOf(cadena.ToString())) //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
+                {
+                    TextBox.Find(cadena, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
+                    TextBox.SelectionColor = Color.Gray; //'... LE PONE EL COLOR INDICADO
+                    INDEX = TextBox.Text.IndexOf(cadena, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
+                }
                 // establece el valor del cursor donde se encontraba antes de pintar la palabra con color
                 TextBox.SelectionStart = pos;
                 TextBox.SelectionLength = 0;
@@ -192,6 +218,7 @@ namespace IDEjames.Analizador
         }
         public void error()
         {
+            cadenaValida = "";
             esCadena = false;
             return;
         }

@@ -126,13 +126,13 @@
             // TextBox
             // 
             this.TextBox.AcceptsTab = true;
-            this.TextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.TextBox.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.TextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TextBox.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBox.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox.Location = new System.Drawing.Point(65, 27);
             this.TextBox.Name = "TextBox";
             this.TextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.TextBox.Size = new System.Drawing.Size(867, 343);
+            this.TextBox.Size = new System.Drawing.Size(867, 396);
             this.TextBox.TabIndex = 0;
             this.TextBox.Text = "";
             this.TextBox.VScroll += new System.EventHandler(this.TextBox_VScrollChanged);
@@ -155,13 +155,13 @@
             this.panel1.Controls.Add(this.numberLabel);
             this.panel1.Location = new System.Drawing.Point(13, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(46, 339);
+            this.panel1.Size = new System.Drawing.Size(46, 393);
             this.panel1.TabIndex = 2;
             // 
             // Posicion
             // 
             this.Posicion.AutoSize = true;
-            this.Posicion.Location = new System.Drawing.Point(67, 381);
+            this.Posicion.Location = new System.Drawing.Point(69, 434);
             this.Posicion.Name = "Posicion";
             this.Posicion.Size = new System.Drawing.Size(32, 13);
             this.Posicion.TabIndex = 4;
@@ -170,7 +170,7 @@
             // position
             // 
             this.position.AutoSize = true;
-            this.position.Location = new System.Drawing.Point(115, 381);
+            this.position.Location = new System.Drawing.Point(117, 434);
             this.position.Name = "position";
             this.position.Size = new System.Drawing.Size(25, 13);
             this.position.TabIndex = 5;
@@ -179,7 +179,7 @@
             // Colum
             // 
             this.Colum.AutoSize = true;
-            this.Colum.Location = new System.Drawing.Point(160, 381);
+            this.Colum.Location = new System.Drawing.Point(162, 434);
             this.Colum.Name = "Colum";
             this.Colum.Size = new System.Drawing.Size(51, 13);
             this.Colum.TabIndex = 6;
@@ -188,7 +188,7 @@
             // columna
             // 
             this.columna.AutoSize = true;
-            this.columna.Location = new System.Drawing.Point(227, 381);
+            this.columna.Location = new System.Drawing.Point(229, 434);
             this.columna.Name = "columna";
             this.columna.Size = new System.Drawing.Size(25, 13);
             this.columna.TabIndex = 7;
@@ -197,7 +197,7 @@
             // LogError
             // 
             this.LogError.AcceptsTab = true;
-            this.LogError.Location = new System.Drawing.Point(70, 430);
+            this.LogError.Location = new System.Drawing.Point(65, 469);
             this.LogError.Name = "LogError";
             this.LogError.ReadOnly = true;
             this.LogError.Size = new System.Drawing.Size(867, 157);
@@ -207,13 +207,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(535, 376);
+            this.button1.Location = new System.Drawing.Point(532, 429);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 36);
+            this.button1.Size = new System.Drawing.Size(116, 34);
             this.button1.TabIndex = 8;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
