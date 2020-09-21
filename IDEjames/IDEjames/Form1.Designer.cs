@@ -47,7 +47,8 @@
             this.Colum = new System.Windows.Forms.Label();
             this.columna = new System.Windows.Forms.Label();
             this.LogError = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Compilar = new System.Windows.Forms.Button();
+            this.exportarErrorAgtEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +58,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.archiveToolStripMenuItem,
             this.eliminarArchivoToolStripMenuItem,
-            this.SalirMenuItem1});
+            this.SalirMenuItem1,
+            this.exportarErrorAgtEToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(944, 24);
@@ -205,23 +207,30 @@
             this.LogError.Text = "";
             this.LogError.TextChanged += new System.EventHandler(this.LogError_TextChanged);
             // 
-            // button1
+            // Compilar
             // 
-            this.button1.Location = new System.Drawing.Point(532, 429);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 34);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Compilar.BackColor = System.Drawing.Color.YellowGreen;
+            this.Compilar.Location = new System.Drawing.Point(366, 429);
+            this.Compilar.Name = "Compilar";
+            this.Compilar.Size = new System.Drawing.Size(116, 34);
+            this.Compilar.TabIndex = 8;
+            this.Compilar.Text = "Compilar";
+            this.Compilar.UseVisualStyleBackColor = false;
+            this.Compilar.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // exportarErrorAgtEToolStripMenuItem
+            // 
+            this.exportarErrorAgtEToolStripMenuItem.Name = "exportarErrorAgtEToolStripMenuItem";
+            this.exportarErrorAgtEToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+            this.exportarErrorAgtEToolStripMenuItem.Text = "Exportar Error a .gtE";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(944, 626);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(944, 609);
+            this.Controls.Add(this.Compilar);
             this.Controls.Add(this.columna);
             this.Controls.Add(this.Colum);
             this.Controls.Add(this.position);
@@ -263,7 +272,8 @@
         private System.Windows.Forms.ToolStripMenuItem GuardarcomoMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eliminarArchivoToolStripMenuItem;
         private System.Windows.Forms.RichTextBox LogError;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Compilar;
+        private System.Windows.Forms.ToolStripMenuItem exportarErrorAgtEToolStripMenuItem;
     }
 }
 

@@ -137,7 +137,7 @@ namespace IDEjames.Analizador
                 if(caracteres[contador].ToString() =="\n")
                 {
                     esCadena = false;
-                    return;
+
                 }
                 else
                 {
@@ -155,7 +155,7 @@ namespace IDEjames.Analizador
                 esCadena = true;
                 //MessageBox.Show("Es Cadena: "+ ComentarioValido);
                 pintaCadena(cadenaValida);
-                return;
+                
             
         }
 
@@ -175,7 +175,7 @@ namespace IDEjames.Analizador
                     if (caracteres[contador].ToString() == "\n")
                     {
                         esCadena = false;
-                        return;
+
                     }
 
                     else
@@ -220,7 +220,7 @@ namespace IDEjames.Analizador
         {
             cadenaValida = "";
             esCadena = false;
-            return;
+
         }
 
     }

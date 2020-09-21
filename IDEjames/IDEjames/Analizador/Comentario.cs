@@ -52,9 +52,11 @@ namespace IDEjames.Analizador
                     }
                     else
                     {
+                        contador++;
                         ComentarioValido = "";
+                        EstadoSubIn();
                         esCadena = false;
-                        return;
+
                     }
 
                 }
@@ -63,6 +65,7 @@ namespace IDEjames.Analizador
                 }
             }
         }
+
         public void EstadoA()
         {
             if (contador < cadena.Length)
@@ -87,6 +90,8 @@ namespace IDEjames.Analizador
                         ComentarioValido += caracteres[contador].ToString();
                         contador++;
                         EstadoA();
+                        //ComentarioValido = "";
+                        //esCadena = false;
                     }
                 }
                 catch
@@ -115,9 +120,10 @@ namespace IDEjames.Analizador
                     }
                     else
                     {
+                        contador++;
+                        EstadoSubIn();
                         ComentarioValido = "";
                         esCadena = false;
-                        return;
                     }
                 }
             }
@@ -136,11 +142,12 @@ namespace IDEjames.Analizador
                 if (contador < cadena.Length)
                 {
 
-                    if (caracteres[contador].ToString() == "*")
+                    if (caracteres[contador].ToString() == "kl")
                     {
+                        contador++;
+                        EstadoSubIn();
                         ComentarioValido = "";
                         esCadena = false;
-                        return;
                     }
                     else
                     {
@@ -155,8 +162,6 @@ namespace IDEjames.Analizador
             {
 
             }
-
-
         }
         //estado de aceptacion que finaliza con una comilla
         public void EstadoF()
@@ -165,10 +170,6 @@ namespace IDEjames.Analizador
             esCadena = true;
             //MessageBox.Show("Es Cadena: "+ ComentarioValido);
             PintaComentario(ComentarioValido);
-            ComentarioValido = "";
-            return;
-
-
         }
 
         public void EstadoD()
@@ -182,13 +183,14 @@ namespace IDEjames.Analizador
                         ComentarioValido += caracteres[contador].ToString();
                         contador++;
                         EstadoE();
-                        ComentarioValido = "";
+
                     }
                     else
                     {
+                        contador++;
                         ComentarioValido = "";
                         esCadena = false;
-                        return;
+
                     }
                 }
                 catch
@@ -199,9 +201,9 @@ namespace IDEjames.Analizador
         public void EstadoE()
         {
             esCadena = true;
-            //MessageBox.Show("Es Cadena: "+ ComentarioValido);
+            MessageBox.Show("Es comentario: "+ ComentarioValido);
             PintaComentario(ComentarioValido);
-            return;
+            
         }
 
         public void SetCadena(String cadena)

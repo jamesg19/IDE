@@ -22,6 +22,7 @@ namespace IDEjames
         OperadorRelacion opeRelacion;
         Entero enteroo;
         PalabrasReservadas reservadas;
+        boolean Booleano;
         string archivo;
         Archivo archivoObjeto = new Archivo("");
         
@@ -36,6 +37,7 @@ namespace IDEjames
             PalabrasReservadas reservadas = new PalabrasReservadas("", TextBox);
             OperadorRelacion opeRelacion = new OperadorRelacion("", TextBox);
             Entero enteroo = new Entero("", TextBox);
+            boolean Booleano = new boolean("", TextBox);
             this.Datocadena = DatoPrimitivoCadena;
             this.comentario = Comentario;
             this.logico = operadorLogico;
@@ -43,19 +45,13 @@ namespace IDEjames
             this.opeRelacion = opeRelacion;
             this.enteroo = enteroo;
             this.reservadas = reservadas;
+            this.Booleano = Booleano;
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            //move location of numberLabel for amount 
-            //of pixels caused by scrollbar
-            int d = TextBox.GetPositionFromCharIndex(0).Y % (TextBox.Font.Height + 1);
-            numberLabel.Location = new Point(0, d);
 
-            //updateNumberLabel();
-            //pintar();
-            //pruebaCadena();
-            Determina_Lexema();
+            
         }
 
 
@@ -107,44 +103,11 @@ namespace IDEjames
             }
         }
 
-        //metodo para actualizar el numero de linea
-        private void updateNumberLabel()
-        {
-            ////we get index of first visible char and 
-            ////number of first visible line
-            //Point pos = new Point(0, 0);
-            //int firstIndex = TextBox.GetCharIndexFromPosition(pos);
-            //int firstLine = TextBox.GetLineFromCharIndex(firstIndex);
 
-            ////now we get index of last visible char 
-            ////and number of last visible line
-            //pos.X = ClientRectangle.Width;
-            //pos.Y = ClientRectangle.Height;
-            //int lastIndex = TextBox.GetCharIndexFromPosition(pos);
-            //int lastLine = TextBox.GetLineFromCharIndex(lastIndex);
-
-            ////this is point position of last visible char, we'll 
-            ////use its Y value for calculating numberLabel size
-            //pos = TextBox.GetPositionFromCharIndex(lastIndex);
-
-            ////finally, renumber label
-            //numberLabel.Text = "";
-            //for (int i = firstLine; i <= lastLine + 1; i++)
-            //{
-            //    numberLabel.Text += i + 1 + "\n";
-            //}
-            
-        }
         // metodo para sincronizar el richtextBox con el label de numero de linea
         private void TextBox_VScrollChanged(object sender, EventArgs e)
         {
-            ////move location of numberLabel for amount 
-            ////of pixels caused by scrollbar
-            //int d = TextBox.GetPositionFromCharIndex(0).Y %
-            //                          (TextBox.Font.Height + 1);
-            //numberLabel.Location = new Point(0, d);
 
-            ////updateNumberLabel();
         }
 
         //muestra la pocion del cursos en cuarquier momento
@@ -166,7 +129,7 @@ namespace IDEjames
 
             //guarda la posicion del cursor antes de pintar
             int pos = TextBox.SelectionStart;
-            string[] Reservadas = new string[] { ";" };
+            string[] Reservadas = new string[] { ";", "="};
 
 
 
@@ -208,19 +171,19 @@ namespace IDEjames
             catch (Exception ex)
             {
             }
+
             //agrega las linea
             for (int i = 0; i < TextBox.Lines.Length; i++)
             {
-
-                //comentario.Inicial(TextBox.Lines[i], TextBox);
+                Booleano.Inicio(TextBox.Lines[i], TextBox);
+                operadorAritmetico1.Inicial(TextBox.Lines[i], TextBox);
                 reservadas.Inicio(TextBox.Lines[i], TextBox);
-                Datocadena.Inicial(TextBox.Lines[i], TextBox);
+                Datocadena.Inicial(TextBox.Lines[i], TextBox); 
+                comentario.Inicial(TextBox.Lines[i], TextBox);
+                logico.Inicial(TextBox.Lines[i], TextBox);
+                opeRelacion.Inicial(TextBox.Lines[i], TextBox);
+                enteroo.Inicial(TextBox.Lines[i], TextBox);
                 
-                //logico.Inicial(TextBox.Lines[i], TextBox);
-                //operadorAritmetico1.Inicial(TextBox.Lines[i], TextBox);
-                //opeRelacion.Inicial(TextBox.Lines[i], TextBox);
-                //enteroo.Inicial(TextBox.Lines[i], TextBox);
-                //MessageBox.Show("Numero :"+i);
             }
 
         }
@@ -234,7 +197,7 @@ namespace IDEjames
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            Determina_Lexema();
         }
     }
 

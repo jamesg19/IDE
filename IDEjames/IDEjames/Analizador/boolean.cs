@@ -8,26 +8,26 @@ using System.Windows.Forms;
 
 namespace IDEjames.Analizador
 {
-    class PalabrasReservadas
+    class boolean
     {
+
         RichTextBox TextBox;
         String TextB;
         String cadenaValida;
         private Boolean esCadena;
         private int contador;
         private String cadena;
-    
-        char comilla = '"';
 
-        public  PalabrasReservadas(String TextB, RichTextBox TextBox)
+
+        public boolean(String TextB, RichTextBox TextBox)
         {
             esCadena = false;
             this.TextBox = TextBox;
             SetCadena("");
-            SetCadena(TextB.ToString());            
+            SetCadena(TextB.ToString());
         }
 
-        public void  Inicio(String TextB, RichTextBox TextBox)
+        public void Inicio(String TextB, RichTextBox TextBox)
         {
             esCadena = false;
             this.TextBox = TextBox;
@@ -43,7 +43,7 @@ namespace IDEjames.Analizador
         {
             //guarda la posicion del cursor antes de pintar
             int pos = TextBox.SelectionStart;
-            string[] Reservadas = new string[] { "SI ", "SINO", "SINO_SI", "MIENTRAS", "HACER", "DESDE","HASTA","INCREMENTO" };
+            string[] Reservadas = new string[] { "verdadero", "falso" };
 
             try
             {
@@ -64,7 +64,7 @@ namespace IDEjames.Analizador
                         //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
 
                         TextBox.Find(CLAVE, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
-                        TextBox.SelectionColor = Color.Green; //'... LE PONE EL COLOR INDICADO
+                        TextBox.SelectionColor = Color.Orange; //'... LE PONE EL COLOR INDICADO
                         INDEX = TextBox.Text.IndexOf(CLAVE, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
 
                     }
@@ -82,5 +82,6 @@ namespace IDEjames.Analizador
             }
 
         }
+
     }
 }

@@ -22,12 +22,10 @@ namespace IDEjames.Analizador
         public OperadorAritmetico(String TextB, RichTextBox TextBox)
         {
             esCadena = false;
-
             SetCadena(TextB.ToString());
             caracteres = cadena.ToCharArray();
 
         }
-
         public void Inicial(String TextB, RichTextBox TextBox)
         {
             this.TextBox = TextBox;
@@ -39,7 +37,6 @@ namespace IDEjames.Analizador
             cadenaValida = "";
             EstadoA();
         }
-
         public void EstadoA()
         {
             try
@@ -72,9 +69,10 @@ namespace IDEjames.Analizador
                     }
                     else
                     {
-
+                        contador++;
+                        cadenaValida = "";
+                        EstadoA();
                         esCadena = false;
-                        return;
                     }
 
                 }
@@ -87,7 +85,6 @@ namespace IDEjames.Analizador
 
         public void EstadoB()
         {
-
             try
             {
                 if (contador < cadena.Length)
@@ -95,13 +92,14 @@ namespace IDEjames.Analizador
                     if (caracteres[contador].ToString() == "+")
                     {
                         cadenaValida += caracteres[contador].ToString();
-                        
                         EstadoE();
                     }
                     else
                     {
+                        contador++;
+                        cadenaValida = "";
+                        EstadoA();
                         esCadena = false;
-                        return;
                     }
                 }
             }
@@ -126,9 +124,11 @@ namespace IDEjames.Analizador
 
                     else
                     {
-
+                        contador++;
+                        cadenaValida = "";
+                        EstadoA();
                         esCadena = false;
-                        return;
+                        
                     }
 
                 }
@@ -145,16 +145,13 @@ namespace IDEjames.Analizador
             esCadena = true;
             //MessageBox.Show("Es Cadena: "+ ComentarioValido);
             pintaAritmetico(cadenaValida);
-            cadenaValida = "";
-            return;
+
         }
         public void EstadoE()
         {
             esCadena = true;
-            //MessageBox.Show("Es Cadena: "+ ComentarioValido);
             pintaAritmetico(cadenaValida);
-            cadenaValida = "";
-            return;
+            
         }
 
         public void SetCadena(String cadena)
@@ -181,7 +178,6 @@ namespace IDEjames.Analizador
                 // establece el valor del cursor donde se encontraba antes de pintar la palabra con color
                 TextBox.SelectionStart = pos;
                 TextBox.SelectionLength = 0;
-
             }
             catch (Exception ex)
             { }

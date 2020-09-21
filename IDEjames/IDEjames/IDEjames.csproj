@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Analizador\AnalizadorLexico.cs" />
+    <Compile Include="Analizador\boolean.cs" />
     <Compile Include="Analizador\Entero.cs" />
     <Compile Include="Analizador\OperadorLogic.cs" />
     <Compile Include="Analizador\Comentario.cs" />

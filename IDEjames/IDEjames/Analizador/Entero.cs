@@ -49,7 +49,7 @@ namespace IDEjames.Analizador
                 if (contador < cadena.Length)
                 {
 
-                    if (caracteres[contador].ToString() == "1" ||
+                    if ( (caracteres[contador].ToString() == "1" ||
                         caracteres[contador].ToString() == "2" ||
                         caracteres[contador].ToString() == "3" ||
                         caracteres[contador].ToString() == "4" ||
@@ -57,7 +57,7 @@ namespace IDEjames.Analizador
                         caracteres[contador].ToString() == "6" ||
                         caracteres[contador].ToString() == "7" ||
                         caracteres[contador].ToString() == "8" ||
-                        caracteres[contador].ToString() == "9")
+                        caracteres[contador].ToString() == "9") )
                     {
                         cadenaValida += caracteres[contador].ToString();
                         contador++;
@@ -71,11 +71,19 @@ namespace IDEjames.Analizador
                         pintaCadena(cadenaValida);
                         EstadoA();
                     }
+                    else if(caracteres[contador].ToString() == ".")
+                    {
+                        contador++;
+                        cadenaValida = "";
+                        EstadoA();
+                        esCadena = false;
+                    }
                     else
                     {
+                        contador++;
                         cadenaValida = "";
+                        EstadoA();
                         esCadena = false;
-                        return;
                     }
                 }
             }
@@ -113,6 +121,7 @@ namespace IDEjames.Analizador
             }
             catch (Exception ex)
             { }
+
         }
 
     }

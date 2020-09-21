@@ -66,8 +66,10 @@ namespace IDEjames.Analizador
                 }
                 else
                 {
+                    contador++;
+                    cadenaValida = "";
+                    EstadoA();
                     esCadena = false;
-                    return;
                 }
             }
             catch { }
@@ -94,8 +96,10 @@ namespace IDEjames.Analizador
 
                     else
                     {
+                        contador++;
+                        cadenaValida = "";
+                        EstadoA();
                         esCadena = false;
-                        return;
                     }
                 }
             }
@@ -118,8 +122,10 @@ namespace IDEjames.Analizador
                     }
                     else
                     {
+                        contador++;
+                        cadenaValida = "";
+                        EstadoA();
                         esCadena = false;
-                        return;
                     }
                 }
             }
@@ -135,7 +141,6 @@ namespace IDEjames.Analizador
                 esCadena = true;
                 
                 PintaRelacional(cadenaValida);
-                return;
             }
             catch
             {

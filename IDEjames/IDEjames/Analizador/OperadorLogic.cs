@@ -68,6 +68,9 @@ namespace IDEjames.Analizador
                 }
                 else
                 {
+                    contador++;
+                    cadenaValida = "";
+                    EstadoA();
                     esCadena = false;
                     return;
                 }
@@ -88,6 +91,9 @@ namespace IDEjames.Analizador
                     }
                     else
                     {
+                        contador++;
+                        cadenaValida = "";
+                        EstadoA();
                         esCadena = false;
                         return;
                     }
@@ -113,6 +119,9 @@ namespace IDEjames.Analizador
                     }
                     else
                     {
+                        contador++;
+                        cadenaValida = "";
+                        EstadoA();
                         esCadena = false;
                         return;
                     }
@@ -131,7 +140,7 @@ namespace IDEjames.Analizador
                 esCadena = true;
                 //MessageBox.Show("Es Cadena: "+ ComentarioValido);
                 PintaOperadorL(cadenaValida);
-                return;
+
             }
             catch
             {
@@ -144,9 +153,7 @@ namespace IDEjames.Analizador
             try
             {
                 esCadena = true;
-                //MessageBox.Show("Es Cadena: "+ ComentarioValido);
                 PintaOperadorL(cadenaValida);
-                return;
             }
             catch
             {
