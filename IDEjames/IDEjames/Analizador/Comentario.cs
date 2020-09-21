@@ -183,14 +183,12 @@ namespace IDEjames.Analizador
                         ComentarioValido += caracteres[contador].ToString();
                         contador++;
                         EstadoE();
-
                     }
                     else
                     {
                         contador++;
                         ComentarioValido = "";
                         esCadena = false;
-
                     }
                 }
                 catch
@@ -201,9 +199,7 @@ namespace IDEjames.Analizador
         public void EstadoE()
         {
             esCadena = true;
-            MessageBox.Show("Es comentario: "+ ComentarioValido);
             PintaComentario(ComentarioValido);
-            
         }
 
         public void SetCadena(String cadena)

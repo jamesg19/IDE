@@ -131,8 +131,6 @@ namespace IDEjames
             int pos = TextBox.SelectionStart;
             string[] Reservadas = new string[] { ";", "="};
 
-
-
             try
             {
                 //PONE TODO EL TEXTO EN EL COLOR POR DEFECTO(FORECOLOR)
@@ -140,8 +138,6 @@ namespace IDEjames
                 TextBox.SelectionStart = 0;
                 TextBox.SelectionLength = TextBox.TextLength;
                 TextBox.SelectionColor = TextBox.ForeColor;
-
-
 
                 foreach (string CLAVE in Reservadas)
                 { //COMPRUEBA CADA UNA DE LAS PALABRAS CLAVE
