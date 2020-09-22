@@ -114,6 +114,37 @@ namespace IDEjames
             }
 
         }
+        //metodo para guardar error en archivo .gtE
+        public void GuardarError(RichTextBox TextBox2)
+        {
+
+            try
+            {
+                SaveFileDialog guardar = new SaveFileDialog();
+                guardar.Filter = ".gtE|*.gtE";
+
+                if (guardar.ShowDialog() == DialogResult.OK)
+                {
+                    archivo = guardar.FileName;
+                    this.ruta = guardar.FileName;
+                    using (StreamWriter sw = new StreamWriter(guardar.FileName))
+                    {
+                        sw.Write(TextBox2.Text);
+                    }
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show("Error al guardar el archivo");
+            }
+
+        }
+
+
+
+
+
         //metodo para eliminar un archivo abierto en el IDE
         public void elimilarArchivo(RichTextBox TextBox)
         {

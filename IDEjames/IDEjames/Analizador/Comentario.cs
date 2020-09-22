@@ -10,9 +10,10 @@ namespace IDEjames.Analizador
 {
     class Comentario
     {
-        RichTextBox TextBox;
+        RichTextBox TextBox, LogError;
         String TextB;
         String ComentarioValido;
+        int NLinea;
         private Boolean esCadena;
         private int contador;
         private String cadena;
@@ -26,10 +27,12 @@ namespace IDEjames.Analizador
             caracteres = cadena.ToCharArray();
         }
 
-        public void Inicial(String TextB, RichTextBox TextBox)
+        public void Inicial(String TextB, RichTextBox TextBox,RichTextBox LogError,int NLinea)
         {
             this.TextBox = TextBox;
+            this.LogError = LogError;
             this.TextB = TextB;
+            this.NLinea = NLinea;
             SetCadena(TextB.ToString());
             caracteres = cadena.ToCharArray();
             contador = 0;
@@ -88,8 +91,9 @@ namespace IDEjames.Analizador
                     else
                     {
                         ComentarioValido += caracteres[contador].ToString();
-                        contador++;
+                        contador++;           
                         EstadoA();
+
                         //ComentarioValido = "";
                         //esCadena = false;
                     }
@@ -117,12 +121,14 @@ namespace IDEjames.Analizador
                         ComentarioValido += caracteres[contador].ToString();
                         contador++;
                         EstadoA();
+                        
                     }
                     else
                     {
                         contador++;
                         EstadoSubIn();
                         ComentarioValido = "";
+                        finalEstado();
                         esCadena = false;
                     }
                 }
@@ -147,6 +153,7 @@ namespace IDEjames.Analizador
                         contador++;
                         EstadoSubIn();
                         ComentarioValido = "";
+                        finalEstado();
                         esCadena = false;
                     }
                     else
@@ -188,6 +195,7 @@ namespace IDEjames.Analizador
                     {
                         contador++;
                         ComentarioValido = "";
+                        finalEstado();
                         esCadena = false;
                     }
                 }
@@ -228,6 +236,9 @@ namespace IDEjames.Analizador
             catch (Exception ex)
             { }
         }
-
+        public void finalEstado()
+        {
+            LogError.Text += "Error de token [" + NLinea + "] \n";
+        }
     }
 }

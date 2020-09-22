@@ -26,7 +26,6 @@ namespace IDEjames
         string archivo;
         Archivo archivoObjeto = new Archivo("");
         
-        
         public Form1()
         {
             InitializeComponent();
@@ -102,6 +101,12 @@ namespace IDEjames
                 return;
             }
         }
+        //metodo para guardar el error en archivo de texto .gtE
+        private void exportarErrorAgtEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            archivoObjeto.GuardarError(LogError);
+
+        }
 
 
         // metodo para sincronizar el richtextBox con el label de numero de linea
@@ -168,18 +173,26 @@ namespace IDEjames
             {
             }
 
-            //agrega las linea
-            for (int i = 0; i < TextBox.Lines.Length; i++)
+            try
             {
-                Booleano.Inicio(TextBox.Lines[i], TextBox);
-                operadorAritmetico1.Inicial(TextBox.Lines[i], TextBox);
-                reservadas.Inicio(TextBox.Lines[i], TextBox);
-                Datocadena.Inicial(TextBox.Lines[i], TextBox); 
-                comentario.Inicial(TextBox.Lines[i], TextBox);
-                logico.Inicial(TextBox.Lines[i], TextBox);
-                opeRelacion.Inicial(TextBox.Lines[i], TextBox);
-                enteroo.Inicial(TextBox.Lines[i], TextBox);
-                
+                //agrega las linea
+                for (int i = 0; i < TextBox.Lines.Length; i++)
+                {
+                    LogError.Text = "";
+                    enteroo.Inicial(TextBox.Lines[i], TextBox);
+                    Booleano.Inicio(TextBox.Lines[i], TextBox);
+                    operadorAritmetico1.Inicial(TextBox.Lines[i], TextBox);
+                    reservadas.Inicio(TextBox.Lines[i], TextBox);
+                    Datocadena.Inicial(TextBox.Lines[i], TextBox);
+                    logico.Inicial(TextBox.Lines[i], TextBox);
+                    opeRelacion.Inicial(TextBox.Lines[i], TextBox);
+                    comentario.Inicial(TextBox.Lines[i], TextBox,LogError,i+1);
+
+                }
+            }
+            catch
+            {
+
             }
 
         }
@@ -195,6 +208,8 @@ namespace IDEjames
         {
             Determina_Lexema();
         }
+
+
     }
 
 }

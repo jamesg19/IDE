@@ -57,26 +57,14 @@ namespace IDEjames.Analizador
                         caracteres[contador].ToString() == "6" ||
                         caracteres[contador].ToString() == "7" ||
                         caracteres[contador].ToString() == "8" ||
-                        caracteres[contador].ToString() == "9") )
+                        caracteres[contador].ToString() == "9")||
+                        caracteres[contador].ToString() == "0")
                     {
                         cadenaValida += caracteres[contador].ToString();
                         contador++;
-                        pintaCadena(cadenaValida);
+                        pintaEntero(cadenaValida);
                         EstadoA();
                         
-                    }
-                    if (caracteres[contador].ToString() == "0")
-                    {
-                        cadenaValida += caracteres[contador].ToString();
-                        pintaCadena(cadenaValida);
-                        EstadoA();
-                    }
-                    else if(caracteres[contador].ToString() == ".")
-                    {
-                        contador++;
-                        cadenaValida = "";
-                        EstadoA();
-                        esCadena = false;
                     }
                     else
                     {
@@ -100,16 +88,15 @@ namespace IDEjames.Analizador
         {
             this.cadena = cadena;
         }
-
-        public void pintaCadena(String cadena)
+        public void pintaEntero(String cadena)
         {
             int pos = TextBox.SelectionStart;
             try
             {
                 int INDEX = 0; //'INICIA LA BUSQUEDA DE LA CLAVE DESDE LA POSICION 0 DEL TEXTO
-
-                while (INDEX <= TextBox.Text.LastIndexOf(cadena.ToString())) //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
+                while (INDEX <= TextBox.Text.LastIndexOf(cadena.ToString() )   ) //'RECORRE TODO EL TEXTO BUSCANDO LA PALABRA CLAVE
                 {
+
                     TextBox.Find(cadena, INDEX, TextBox.TextLength, RichTextBoxFinds.WholeWord); //'CUANDO LA ENCUENTRA LA SELECCIONA Y....
                     TextBox.SelectionColor = Color.Purple; //'... LE PONE EL COLOR INDICADO
                     INDEX = TextBox.Text.IndexOf(cadena, INDEX) + 1; //'AVANZA A LA SIGUIENTE UBICACION DE LA PALABRA CLAVE
@@ -117,11 +104,9 @@ namespace IDEjames.Analizador
                 // establece el valor del cursor donde se encontraba antes de pintar la palabra con color
                 TextBox.SelectionStart = pos;
                 TextBox.SelectionLength = 0;
-
             }
             catch (Exception ex)
             { }
-
         }
 
     }

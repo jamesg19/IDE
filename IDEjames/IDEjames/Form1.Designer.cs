@@ -38,6 +38,7 @@
             this.GuardarcomoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eliminarArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SalirMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportarErrorAgtEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TextBox = new System.Windows.Forms.RichTextBox();
             this.numberLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -48,7 +49,6 @@
             this.columna = new System.Windows.Forms.Label();
             this.LogError = new System.Windows.Forms.RichTextBox();
             this.Compilar = new System.Windows.Forms.Button();
-            this.exportarErrorAgtEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -81,33 +81,33 @@
             // AbrirMenuItem
             // 
             this.AbrirMenuItem.Name = "AbrirMenuItem";
-            this.AbrirMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.AbrirMenuItem.Size = new System.Drawing.Size(180, 22);
             this.AbrirMenuItem.Text = "Abrir";
             this.AbrirMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
             // 
             // NuevoArchivoMenuItem
             // 
             this.NuevoArchivoMenuItem.Name = "NuevoArchivoMenuItem";
-            this.NuevoArchivoMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.NuevoArchivoMenuItem.Size = new System.Drawing.Size(180, 22);
             this.NuevoArchivoMenuItem.Text = "Nuevo Archivo";
             this.NuevoArchivoMenuItem.Click += new System.EventHandler(this.NuevoArchivoToolStripMenuItem_Click);
             // 
             // GuardarMenuItem
             // 
             this.GuardarMenuItem.Name = "GuardarMenuItem";
-            this.GuardarMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.GuardarMenuItem.Size = new System.Drawing.Size(180, 22);
             this.GuardarMenuItem.Text = "Guardar";
             this.GuardarMenuItem.Click += new System.EventHandler(this.GuardarToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(150, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // GuardarcomoMenuItem
             // 
             this.GuardarcomoMenuItem.Name = "GuardarcomoMenuItem";
-            this.GuardarcomoMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.GuardarcomoMenuItem.Size = new System.Drawing.Size(180, 22);
             this.GuardarcomoMenuItem.Text = "Guardar como";
             this.GuardarcomoMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click_1);
             // 
@@ -124,6 +124,13 @@
             this.SalirMenuItem1.Size = new System.Drawing.Size(41, 20);
             this.SalirMenuItem1.Text = "Salir";
             this.SalirMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
+            // 
+            // exportarErrorAgtEToolStripMenuItem
+            // 
+            this.exportarErrorAgtEToolStripMenuItem.Name = "exportarErrorAgtEToolStripMenuItem";
+            this.exportarErrorAgtEToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+            this.exportarErrorAgtEToolStripMenuItem.Text = "Exportar Error a .gtE";
+            this.exportarErrorAgtEToolStripMenuItem.Click += new System.EventHandler(this.exportarErrorAgtEToolStripMenuItem_Click);
             // 
             // TextBox
             // 
@@ -217,12 +224,6 @@
             this.Compilar.Text = "Compilar";
             this.Compilar.UseVisualStyleBackColor = false;
             this.Compilar.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // exportarErrorAgtEToolStripMenuItem
-            // 
-            this.exportarErrorAgtEToolStripMenuItem.Name = "exportarErrorAgtEToolStripMenuItem";
-            this.exportarErrorAgtEToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
-            this.exportarErrorAgtEToolStripMenuItem.Text = "Exportar Error a .gtE";
             // 
             // Form1
             // 
