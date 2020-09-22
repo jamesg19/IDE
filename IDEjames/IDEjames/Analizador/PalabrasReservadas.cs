@@ -44,7 +44,7 @@ namespace IDEjames.Analizador
         {
             //guarda la posicion del cursor antes de pintar
             int pos = TextBox.SelectionStart;
-            string[] Reservadas = new string[] { "SI ", "SINO", "SINO_SI", "MIENTRAS", "HACER", "DESDE","HASTA","INCREMENTO" };
+            string[] Reservadas = new string[] { "SI", "SINO", "SINO_SI", "MIENTRAS", "HACER", "DESDE","HASTA","INCREMENTO" };
             try
             {
                 //PONE TODO EL TEXTO EN EL COLOR POR DEFECTO(FORECOLOR)

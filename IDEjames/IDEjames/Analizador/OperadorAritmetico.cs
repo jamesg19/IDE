@@ -145,6 +145,7 @@ namespace IDEjames.Analizador
             esCadena = true;
             //MessageBox.Show("Es Cadena: "+ ComentarioValido);
             pintaAritmetico(cadenaValida);
+            return;
 
         }
         public void EstadoE()

@@ -172,13 +172,13 @@ namespace IDEjames
             catch (Exception ex)
             {
             }
-
+            LogError.Text = "";
             try
             {
                 //agrega las linea
                 for (int i = 0; i < TextBox.Lines.Length; i++)
                 {
-                    LogError.Text = "";
+                    
                     enteroo.Inicial(TextBox.Lines[i], TextBox);
                     Booleano.Inicio(TextBox.Lines[i], TextBox);
                     operadorAritmetico1.Inicial(TextBox.Lines[i], TextBox);
